@@ -1,0 +1,38 @@
+---
+- name: Configurar IPs y OSPFv2 en R3 IOS-XE
+  hosts: r3-iosxe
+  gather_facts: no
+  tasks:
+
+    - name: Configurar interfaz hacia R1 (e1)
+      cisco.ios.ios_config:
+        lines:
+          - interface g0/1
+          - description Enlace a R1
+          - ip address 192.168.100.1 255.255.255.0
+          - no shutdown
+
+    - name: Configurar interfaz hacia R2 (e2)
+      cisco.ios.ios_config:
+        lines:
+          - interface g0/2
+          - description Enlace a R2
+          - ip address 192.168.120.1 255.255.255.0
+          - no shutdown
+
+    # - name: Configurar loopback0 para router-id
+    #   cisco.ios.ios_config:
+    #     lines:
+    #       - interface Loopback0
+    #       - ip address 3.3.3.3 255.255.255.255
+    #       - exit
+
+    - name: Configurar OSPFv2 en R3
+      cisco.ios.ios_config:
+        lines:
+          - router ospf 1
+          - router-id 3.3.3.3
+          - network 192.168.100.0 0.0.0.255 area 0
+          - network 192.168.120.0 0.0.0.255 area 0
+          # - network 3.3.3.3 0.0.0.0 area 0
+
