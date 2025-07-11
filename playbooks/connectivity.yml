@@ -1,8 +1,11 @@
 - name: Validar conectividad ICMP
   hosts: router
   gather_facts: false
+  connection: ansible.netcommon.netconf
+
   tasks:
     - name: Ping a router loopback
+      connection: ansible.netcommon.network_cli
       ios_ping:
         dest: "{{ hostvars['router'].ansible_host }}"
         count: 3
