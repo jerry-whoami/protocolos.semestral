@@ -117,6 +117,8 @@ interface GigabitEthernet 0
  no shutdown
 exit
 
+netconf-yang
+
 exit
 copy running-config startup-config
 ```
