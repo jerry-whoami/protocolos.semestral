@@ -1,0 +1,66 @@
+---
+- name: Configurar OSPFv2 via NETCONF en IOS XE
+  hosts: router
+  gather_facts: false
+
+  tasks:
+    - name: Configurar interfaces L3 (IP y estado) vía NETCONF
+      ansible.netcommon.netconf_config:
+        commit: true
+        content: |
+          <config xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+            <native xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-native">
+              <interface>
+                <GigabitEthernet>
+                  <name>0/1</name>
+                  <ip>
+                    <address>
+                      <primary>
+                        <address>192.168.100.1</address>
+                        <mask>255.255.255.0</mask>
+                      </primary>
+                    </address>
+                  </ip>
+                  <shutdown xmlns:nc="urn:ietf:params:xml:ns:netconf:base:1.0">false</shutdown>
+                </GigabitEthernet>
+                <GigabitEthernet>
+                  <name>0/2</name>
+                  <ip>
+                    <address>
+                      <primary>
+                        <address>192.168.120.1</address>
+                        <mask>255.255.255.0</mask>
+                      </primary>
+                    </address>
+                  </ip>
+                  <shutdown xmlns:nc="urn:ietf:params:xml:ns:netconf:base:1.0">false</shutdown>
+                </GigabitEthernet>
+              </interface>
+            </native>
+          </config>
+
+    - name: Aplicar configuración OSPF completo
+      ansible.netcommon.netconf_config:
+        target: running
+        commit: true
+        content: |
+          <config xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+            <native xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-native">
+              <router>
+                <ospf xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-ospf">
+                  <id>1</id>
+                  <router-id>1.1.1.1</router-id>
+                  <network>
+                    <ip>10.0.1.0</ip>
+                    <mask>0.0.0.255</mask>
+                    <area>0</area>
+                  </network>
+                  <network>
+                    <ip>10.0.2.0</ip>
+                    <mask>0.0.0.255</mask>
+                    <area>0</area>
+                  </network>
+                </ospf>
+              </router>
+            </native>
+          </config>

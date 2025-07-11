@@ -1,0 +1,11 @@
+- name: Validar conectividad ICMP entre R1 y R2
+  hosts: router
+  tasks:
+    - name: Ping a router loopback
+      ios_ping:
+        dest: "{{ hostvars['router'].ansible_host }}"
+        count: 3
+      register: ping_result
+
+    - debug:
+        msg: "Ping exitoso: {{ ping_result }}"
