@@ -24,7 +24,7 @@
                       </primary>
                     </address>
                   </ip>
-                  <shutdown xmlns:nc="urn:ietf:params:xml:ns:netconf:base:1.0">false</shutdown>
+                  <shutdown/> 
                 </GigabitEthernet>
                 <GigabitEthernet>
                   <name>0/2</name>
@@ -36,7 +36,7 @@
                       </primary>
                     </address>
                   </ip>
-                  <shutdown xmlns:nc="urn:ietf:params:xml:ns:netconf:base:1.0">false</shutdown>
+                  <shutdown/> 
                 </GigabitEthernet>
               </interface>
             </native>
