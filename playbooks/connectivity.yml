@@ -1,5 +1,6 @@
 - name: Validar conectividad ICMP
   hosts: router
+  gather_facts: false
   tasks:
     - name: Ping a router loopback
       ios_ping:
