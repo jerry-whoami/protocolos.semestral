@@ -1,6 +1,6 @@
 ---
 - name: Configurar IPs y OSPFv2 en R3 IOS-XE
-  hosts: r3-iosxe
+  hosts: cisco-router-ios-xe
   gather_facts: no
   tasks:
 
