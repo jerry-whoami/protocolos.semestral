@@ -2,6 +2,7 @@
 - name: Configurar OSPFv2 via NETCONF en IOS XE
   hosts: router
   gather_facts: false
+  connection: ansible.netcommon.netconf
   vars:
     ansible_port: 830
 
