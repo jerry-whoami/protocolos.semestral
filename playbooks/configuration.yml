@@ -2,6 +2,8 @@
 - name: Configurar OSPFv2 via NETCONF en IOS XE
   hosts: router
   gather_facts: false
+  vars:
+    ansible_port: 830
 
   tasks:
     - name: Configurar interfaces L3 (IP y estado) vía NETCONF
