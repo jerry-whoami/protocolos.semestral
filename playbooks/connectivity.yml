@@ -1,7 +1,6 @@
 - name: Validar conectividad ICMP
   hosts: router
   gather_facts: false
-  connection: ansible.netcommon.netconf
 
   tasks:
     - name: Ping a router loopback
