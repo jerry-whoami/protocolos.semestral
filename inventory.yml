@@ -4,10 +4,9 @@ all:
       ansible_host: 192.168.100.1
       ansible_user: admin
       ansible_password: password
+      ansible_connection: ansible.netcommon.netconf
       ansible_network_os: cisco.ios.ios
-      ansible_connection: ansible.netcommon.netconf 
       ansible_become: true
       ansible_become_method: enable
-      #
+      ansible_port: 830
       # ansible_become_password: TuEnablePassword
-      # netconf_port: 830
