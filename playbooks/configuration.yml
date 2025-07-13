@@ -15,9 +15,30 @@
                   xmlns:xc="urn:ietf:params:xml:ns:netconf:base:1.0">
             <native xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-native">
               <interface>
+                <GigabitEthernet xc:operation="create">
+                  <name>2</name>
+                </GigabitEthernet>
+                <GigabitEthernet xc:operation="create">
+                  <name>3</name>
+                </GigabitEthernet>
+              </interface>
+
+              <!-- Step 2: Remove shutdown to bring interfaces up -->
+              <interface>
+                <GigabitEthernet>
+                  <name>2</name>
+                  <shutdown xc:operation="delete"/>
+                </GigabitEthernet>
+                <GigabitEthernet>
+                  <name>3</name>
+                  <shutdown xc:operation="delete"/>
+                </GigabitEthernet>
+              </interface>
+
+              <!-- Step 3: Assign IP addresses -->
+              <interface>
                 <GigabitEthernet xc:operation="merge">
                   <name>2</name>
-                  <description>Conexión a R1</description>
                   <ip>
                     <address>
                       <primary>
@@ -26,11 +47,9 @@
                       </primary>
                     </address>
                   </ip>
-                  <shutdown xc:operation="delete"/>
                 </GigabitEthernet>
                 <GigabitEthernet xc:operation="merge">
                   <name>3</name>
-                  <description>Conexión a R2</description>
                   <ip>
                     <address>
                       <primary>
@@ -39,9 +58,8 @@
                       </primary>
                     </address>
                   </ip>
-                  <shutdown xc:operation="delete"/>
                 </GigabitEthernet>
-              </interface>
+              </interface>            
             </native>
           </config>
 
