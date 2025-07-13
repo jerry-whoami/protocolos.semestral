@@ -2,8 +2,45 @@
 - name: Validar configuración OSPFv2 en IOS XE
   hosts: router
   gather_facts: false
+  connection: ansible.netcommon.netconf
+  vars:
+    ansible_port: 830
 
   tasks:
+    - name: Validar zonas y vecindad OSPF
+      ansible.netcommon.netconf_get:
+        source: running
+        filter: |
+      register: ospf_config
+        <filter>
+          <native xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-native">
+            <interface>
+              <GigabitEthernet>
+                <name>2</name>
+                <ip>
+                  <address>
+                    <primary>
+                      <address>192.168.100.1</address>
+                      <mask>255.255.255.0</mask>
+                    </primary>
+                  </address>
+                </ip>
+              </GigabitEthernet>
+              <GigabitEthernet>
+                <name>3</name>
+                <shutdown/>
+                <ip>
+                  <address>
+                    <primary>
+                      <address>192.168.120.1</address>
+                      <mask>255.255.255.0</mask>
+                    </primary>
+                  </address>
+                </ip>
+              </GigabitEthernet>
+            </interface>
+          </native>
+        </filter>
     - name: Validar zonas y vecindad OSPF
       ansible.netcommon.netconf_get:
         source: running
