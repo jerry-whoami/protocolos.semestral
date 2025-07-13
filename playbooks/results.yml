@@ -33,14 +33,11 @@
         source: running
         display: xml
         filter: |
-          <router-ospf xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-ospf">
-            <ospf>
-              <process-id>
-                <id>1</id>
-                <neighbor/>
-              </process-id>
-            </ospf>
-          </router-ospf>
+          <ospf-state xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-ospf-oper">
+            <ospf-operational>
+              <neighbor/>
+            </ospf-operational>
+          </ospf-state>
       register: ospf_neighbors
 
     - name: Print OSPF Neighbor Data
