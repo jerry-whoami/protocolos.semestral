@@ -113,7 +113,7 @@ line console 0
 exit
 
 interface GigabitEthernet 0
- ip address 192.168.100.1 255.255.255.0
+ ip address 192.168.100.10 255.255.255.0
  no shutdown
 exit
 

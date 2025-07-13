@@ -15,7 +15,7 @@
             <native xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-native">
               <interface>
                 <GigabitEthernet>
-                  <name>1</name>
+                  <name>2</name>
                   <ip>
                     <address>
                       <primary>
@@ -24,10 +24,9 @@
                       </primary>
                     </address>
                   </ip>
-                  <shutdown xmlns:xc="urn:ietf:params:xml:ns:netconf:base:1.0" xc:operation="delete"/>
                 </GigabitEthernet>
                 <GigabitEthernet>
-                  <name>2</name>
+                  <name>3</name>
                   <ip>
                     <address>
                       <primary>
@@ -36,7 +35,6 @@
                       </primary>
                     </address>
                   </ip>
-                  <shutdown xmlns:xc="urn:ietf:params:xml:ns:netconf:base:1.0" xc:operation="delete"/>
                 </GigabitEthernet>
               </interface>
             </native>
