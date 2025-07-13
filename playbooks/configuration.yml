@@ -21,10 +21,8 @@
                 <GigabitEthernet xc:operation="create">
                   <name>3</name>
                 </GigabitEthernet>
-              </interface>
 
               <!-- Step 2: Remove shutdown to bring interfaces up -->
-              <interface>
                 <GigabitEthernet>
                   <name>2</name>
                   <shutdown xc:operation="delete"/>
@@ -33,10 +31,8 @@
                   <name>3</name>
                   <shutdown xc:operation="delete"/>
                 </GigabitEthernet>
-              </interface>
 
               <!-- Step 3: Assign IP addresses -->
-              <interface>
                 <GigabitEthernet xc:operation="merge">
                   <name>2</name>
                   <ip>
@@ -59,7 +55,6 @@
                     </address>
                   </ip>
                 </GigabitEthernet>
-              </interface>            
             </native>
           </config>
 
