@@ -24,6 +24,6 @@
       register: config
 
     - name: Write Config To File
-       copy:
-         content: "{{ config['stdout'] }}" 
-         dest: ../configs/{{ inventory_hostname }}-Interface-config.xml
+      copy:
+        content: "{{ config['stdout'] }}" 
+        dest: ../configs/{{ inventory_hostname }}-Interface-config.xml
