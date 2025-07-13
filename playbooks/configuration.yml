@@ -16,6 +16,7 @@
               <interface>
                 <GigabitEthernet>
                   <name>2</name>
+                  <enabled>true</enabled>
                   <ip>
                     <address>
                       <primary>
@@ -24,10 +25,10 @@
                       </primary>
                     </address>
                   </ip>
-                  <shutdown operation="delete"/>
                 </GigabitEthernet>
                 <GigabitEthernet>
                   <name>3</name>
+                  <enabled>true</enabled>
                   <ip>
                     <address>
                       <primary>
@@ -36,7 +37,6 @@
                       </primary>
                     </address>
                   </ip>
-                  <shutdown operation="delete"/>
                 </GigabitEthernet>
               </interface>
             </native>
