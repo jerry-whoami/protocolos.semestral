@@ -10,15 +10,14 @@
   tasks:
     - name: Configurar interfaces L3 (IP y estado) vía NETCONF
       ansible.netcommon.netconf_config:
-        commit: true
+        # commit: true
+        target: running
         content: |
-          <config xmlns="urn:ietf:params:xml:ns:netconf:base:1.0"
-                  xmlns:xc="urn:ietf:params:xml:ns:netconf:base:1.0">
+          <config xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
             <native xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-native">
               <interface>
                 <GigabitEthernet xc:operation="merge">
                   <name>2</name>
-                  <shutdown xc:operation="delete"/>
                   <ip>
                     <address>
                       <primary>
@@ -30,7 +29,6 @@
                 </GigabitEthernet>
                 <GigabitEthernet xc:operation="merge">
                   <name>3</name>
-                  <shutdown xc:operation="delete"/>
                   <ip>
                     <address>
                       <primary>
