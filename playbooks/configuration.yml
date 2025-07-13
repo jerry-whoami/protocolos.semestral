@@ -5,7 +5,6 @@
   connection: ansible.netcommon.netconf
   vars:
     ansible_port: 830
-    ansible_netconf_timeout: 60
 
   tasks:
     - name: Configurar interfaces L3 (IP y estado) vía NETCONF
