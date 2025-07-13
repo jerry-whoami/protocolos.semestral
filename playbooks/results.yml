@@ -34,10 +34,13 @@
         display: pretty
         filter: |
           <ospf-oper-data xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-ospf-oper">
-            <ospf-state/>
-            <ospfv2-instance>
-              <instance-id>1</instance-id>
-            </ospfv2-instance>
+            <ospf-state>
+              <ospfv2-instance>
+                <ospfv2-router>
+                  <ospfv2-neighbor/>
+                </ospfv2-router>
+              </ospfv2-instance>
+            </ospf-state>
           </ospf-oper-data>
       register: ospf_neighbors
 
