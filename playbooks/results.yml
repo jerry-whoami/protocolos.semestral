@@ -1,5 +1,5 @@
 ---
-- name: Configurar OSPFv2 via NETCONF en IOS XE
+- name: Mostrar configuración OSPFv2 via NETCONF en IOS XE
   hosts: router
   gather_facts: false
   connection: ansible.netcommon.netconf
@@ -10,6 +10,7 @@
     - name: Get Interface Config
       ansible.netcommon.netconf_get:
         source: running
+        display: xml
         filter: |
           <native xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-native">
             <interface>
@@ -21,9 +22,27 @@
               </GigabitEthernet>
             </interface>
           </native>
-      register: config
+      register: interface_config
 
-    - name: Write Config To File
-      copy:
-        content: "{{ config['stdout'] }}" 
-        dest: ../configs/{{ inventory_hostname }}-Interface-config.xml
+    - name: Print Interface Data
+      debug:
+        msg: "{{ interface_config.stdout }}"
+
+    - name: Get OSPF Neighbor Info
+      ansible.netcommon.netconf_get:
+        source: running
+        display: xml
+        filter: |
+          <router-ospf xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-ospf">
+            <ospf>
+              <process-id>
+                <id>1</id>
+                <neighbor/>
+              </process-id>
+            </ospf>
+          </router-ospf>
+      register: ospf_neighbors
+
+    - name: Print OSPF Neighbor Data
+      debug:
+        msg: "{{ ospf_neighbors.stdout }}"
