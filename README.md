@@ -112,8 +112,8 @@ line console 0
   logging synchronous
 exit
 
-interface GigabitEthernet 0
- ip address 192.168.100.1 255.255.255.0
+interface GigabitEthernet 1
+ ip address 192.168.150.1 255.255.255.0
  no shutdown
 exit
 
@@ -126,8 +126,8 @@ copy running-config startup-config
 ### Configure ubuntu server
 
 ```sh
-sudo nmcli con mod "Wired connection 1" ipv4.addresses 192.168.100.10/24
-sudo nmcli con mod "Wired connection 1" ipv4.gateway 192.168.100.1
+sudo nmcli con mod "Wired connection 1" ipv4.addresses 192.168.150.10/24
+sudo nmcli con mod "Wired connection 1" ipv4.gateway 192.168.150.1
 sudo nmcli con mod "Wired connection 1" ipv4.dns 8.8.8.8
 sudo nmcli con mod "Wired connection 1" ipv4.method manual
 
