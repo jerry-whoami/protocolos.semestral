@@ -35,6 +35,7 @@
         filter: |
           <ospf-oper-data xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-ospf-oper">
             <ospf-state/>
+            <ospfv2-instance/>
           </ospf-oper-data>
       register: ospf_neighbors
 
