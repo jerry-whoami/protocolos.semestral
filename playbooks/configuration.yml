@@ -11,8 +11,7 @@
       ansible.netcommon.netconf_config:
         commit: true
         content: |
-          <config xmlns="urn:ietf:params:xml:ns:netconf:base:1.0"
-              xmlns:xe="urn:ietf:params:xml:ns:netconf:base:1.0">
+          <config xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
             <native xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-native">
               <interface>
                 <GigabitEthernet>
@@ -25,7 +24,6 @@
                       </primary>
                     </address>
                   </ip>
-                  <shutdown xe:operation="delete"/>
                 </GigabitEthernet>
                 <GigabitEthernet>
                   <name>3</name>
@@ -37,7 +35,6 @@
                       </primary>
                     </address>
                   </ip>
-                  <shutdown xe:operation="delete"/>
                 </GigabitEthernet>
               </interface>
             </native>
