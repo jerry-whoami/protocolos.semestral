@@ -1,23 +1,29 @@
 ---
-    - hosts: MPLS-SERVICE
-      connection: netconf
-      tasks:
-        - name: Get Interface Config
-          netconf_get:
-            source: running
-            filter: |
-              <native xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-native">
-                <interface>
-                  <GigabitEthernet>
-                    <name>1</name>
-                  </GigabitEthernet>
-                  <GigabitEthernet>
-                    <name>2</name>
-                  </GigabitEthernet>
-                </interface>
-              </native>
-          register: config
-        -  name: Write Config To File
-           copy: 
-            content: "{{ config['stdout'] }}" 
-            dest: ../configs/{{ inventory_hostname }}-Interface-config.xml
+- name: Configurar OSPFv2 via NETCONF en IOS XE
+  hosts: router
+  gather_facts: false
+  connection: ansible.netcommon.netconf
+  vars:
+    ansible_port: 830
+
+  tasks:
+    - name: Get Interface Config
+      ansible.netcommon.netconf_get:
+        source: running
+        filter: |
+          <native xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-native">
+            <interface>
+              <GigabitEthernet>
+                <name>1</name>
+              </GigabitEthernet>
+              <GigabitEthernet>
+                <name>2</name>
+              </GigabitEthernet>
+            </interface>
+          </native>
+      register: config
+
+    - name: Write Config To File
+       copy:
+         content: "{{ config['stdout'] }}" 
+         dest: ../configs/{{ inventory_hostname }}-Interface-config.xml
