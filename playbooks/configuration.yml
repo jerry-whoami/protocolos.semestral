@@ -15,8 +15,9 @@
                   xmlns:xc="urn:ietf:params:xml:ns:netconf:base:1.0">
             <native xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-native">
               <interface>
-                <GigabitEthernet>
+                <GigabitEthernet xc:operation="merge">
                   <name>2</name>
+                  <description>Conexión a R1</description>
                   <ip>
                     <address>
                       <primary>
@@ -27,8 +28,9 @@
                   </ip>
                   <shutdown xc:operation="delete"/>
                 </GigabitEthernet>
-                <GigabitEthernet>
+                <GigabitEthernet xc:operation="merge">
                   <name>3</name>
+                  <description>Conexión a R2</description>
                   <ip>
                     <address>
                       <primary>
