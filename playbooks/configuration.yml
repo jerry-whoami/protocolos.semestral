@@ -24,6 +24,7 @@
                       </primary>
                     </address>
                   </ip>
+                  <shutdown xc:operation="delete"/>
                 </GigabitEthernet>
                 <GigabitEthernet>
                   <name>3</name>
@@ -35,6 +36,7 @@
                       </primary>
                     </address>
                   </ip>
+                  <shutdown xc:operation="delete"/>
                 </GigabitEthernet>
               </interface>
             </native>
