@@ -16,7 +16,7 @@
           <config xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
             <native xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-native">
               <interface>
-                <GigabitEthernet xc:operation="merge">
+                <GigabitEthernet>
                   <name>2</name>
                   <ip>
                     <address>
@@ -27,7 +27,7 @@
                     </address>
                   </ip>
                 </GigabitEthernet>
-                <GigabitEthernet xc:operation="merge">
+                <GigabitEthernet>
                   <name>3</name>
                   <ip>
                     <address>
