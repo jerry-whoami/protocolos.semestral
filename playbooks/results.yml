@@ -31,17 +31,16 @@
     - name: Get OSPF Neighbor Info
       ansible.netcommon.netconf_get:
         source: running
-        display: pretty
+        display: xml
         filter: |
           <ospf-oper-data xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-ospf-oper">
-            <ospf-state>
-              <ospfv2-instance>
-                <ospfv2-router>
-                  <ospfv2-neighbor/>
-                </ospfv2-router>
-              </ospfv2-instance>
-            </ospf-state>
-          </ospf-oper-data>
+              <ospf-state>
+                <op-mode/>
+                <ospf-instance>
+                  <process-id/>
+                </ospf-instance>
+              </ospf-state>
+            </ospf-oper-data>
       register: ospf_neighbors
 
     - name: Print OSPF Neighbor Data
