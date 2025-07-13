@@ -16,7 +16,6 @@
               <interface>
                 <GigabitEthernet>
                   <name>2</name>
-                  <enabled>true</enabled>
                   <ip>
                     <address>
                       <primary>
@@ -28,7 +27,6 @@
                 </GigabitEthernet>
                 <GigabitEthernet>
                   <name>3</name>
-                  <enabled>true</enabled>
                   <ip>
                     <address>
                       <primary>
