@@ -10,7 +10,7 @@
     - name: Get Interface Config
       ansible.netcommon.netconf_get:
         source: running
-        display: xml
+        display: pretty
         filter: |
           <native xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-native">
             <interface>
@@ -31,13 +31,19 @@
     - name: Get OSPF Neighbor Info
       ansible.netcommon.netconf_get:
         source: running
-        display: xml
+        display: pretty
         filter: |
-          <ospf-state xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-ospf-oper">
-            <ospf-operational>
-              <neighbor/>
-            </ospf-operational>
-          </ospf-state>
+          <native xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-native">
+            <router>
+              <router-ospf xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-ospf">
+                <ospf>
+                  <process-id>
+                    <id>1</id>
+                  </process-id>
+                </ospf>
+              </router-ospf>
+            </router>
+          </native>
       register: ospf_neighbors
 
     - name: Print OSPF Neighbor Data
