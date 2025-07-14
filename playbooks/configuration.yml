@@ -9,7 +9,6 @@
   tasks:
     - name: Configurar interfaces L3 (IP y estado) vía NETCONF
       ansible.netcommon.netconf_config:
-        save: true
         commit: true
         default_operation: merge
         content: |
@@ -48,7 +47,6 @@
       ansible.netcommon.netconf_config:
         # target: running
         commit: true
-        save: true
         content: |
           <config xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
             <native xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-native">
@@ -74,3 +72,13 @@
               </router>
             </native>
           </config>
+
+- name: Save configuration via CLI
+  hosts: router
+  connection: ansible.netcommon.network_cli
+  gather_facts: false
+  tasks:
+    - name: Copy running to startup
+      cisco.ios.ios_command:
+        commands:
+          - copy running-config startup-config
