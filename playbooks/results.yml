@@ -34,10 +34,19 @@
         display: xml
       register: ospf_neighbors
 
+    - name: Get OSPF neighbor data using CLI over NETCONF
+      ansible.netcommon.netconf_rpc:
+        content: |
+          <cisco-ia:exec-command xmlns:cisco-ia="http://cisco.com/ns/yang/cisco-ia">
+            <cisco-ia:command>show ip ospf neighbor</cisco-ia:command>
+          </cisco-ia:exec-command>
+      register: ospf_neighbors
+
     - name: Print OSPF Neighbor Data
       debug:
         msg: "{{ ospf_neighbors.stdout }}"
-    - name: Print OSPF Neighbor Data
-      copy:
-        content: "{{ ospf_neighbors.stdout }}" 
-        dest: ./configs/{{ inventory_hostname }}-Interface-config.xml
+
+    # - name: Print OSPF Neighbor Data
+    #   copy:
+    #     content: "{{ ospf_neighbors.stdout }}" 
+    #     dest: ./configs/{{ inventory_hostname }}-Interface-config.xml
