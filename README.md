@@ -121,11 +121,26 @@ netconf-yang
 
 exit
 copy running-config startup-config
+
+ip ssh pubkey-chain
+username admin
+key-string
+<ssh-key>
 ```
 
 ### Configure ubuntu server
 
 ```sh
+sudo apt update
+sudo apt install git python3-pip python3-venv
+
+# Add the key to Github
+ssh-keygen -t rsa
+git clone git@github.com:jerry-whoami/protocolos.semestral.git Semestral
+
+# When adding it to the router
+fold -w72 .ssh/id_rsa.pub
+
 sudo nmcli con mod "Wired connection 1" ipv4.addresses 192.168.150.10/24
 sudo nmcli con mod "Wired connection 1" ipv4.gateway 192.168.150.1
 sudo nmcli con mod "Wired connection 1" ipv4.dns 8.8.8.8
@@ -134,5 +149,8 @@ sudo nmcli con mod "Wired connection 1" ipv4.method manual
 sudo nmcli con down "Wired connection 1"
 sudo nmcli con up "Wired connection 1"
 
-ssh-keygen -t rsa
+# Setup project
+python3 -m venv .venv
+source .venv/bin/activate
+pip install ansible-playbook ansible-pylibssh ncclient
 ```
