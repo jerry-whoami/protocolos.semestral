@@ -152,5 +152,5 @@ sudo nmcli con up "Wired connection 1"
 # Setup project
 python3 -m venv .venv
 source .venv/bin/activate
-pip install ansible-playbook ansible-pylibssh ncclient
+pip install ansible-playbook ansible-pylibssh ncclient jxmlease
 ```
