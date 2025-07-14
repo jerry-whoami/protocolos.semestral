@@ -9,6 +9,7 @@
   tasks:
     - name: Configurar interfaces L3 (IP y estado) vía NETCONF
       ansible.netcommon.netconf_config:
+        save: true
         commit: true
         default_operation: merge
         content: |
@@ -45,8 +46,9 @@
 
     - name: Aplicar configuración OSPFv2
       ansible.netcommon.netconf_config:
-        target: running
+        # target: running
         commit: true
+        save: true
         content: |
           <config xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
             <native xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-native">
@@ -72,17 +74,3 @@
               </router>
             </native>
           </config>
-
-    - name: Guardar configuración en memoria
-      ansible.netcommon.netconf_rpc:
-        rpc: |
-          <rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="101">
-            <copy-config>
-              <source>
-                <running/>
-              </source>
-              <target>
-                <startup/>
-              </target>
-            </copy-config>
-          </rpc>
