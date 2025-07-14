@@ -40,4 +40,4 @@
     - name: Print OSPF Neighbor Data
       copy:
         content: "{{ ospf_neighbors.stdout }}" 
-        dest: ../configs/{{ inventory_hostname }}-Interface-config.xml
+        dest: ./configs/{{ inventory_hostname }}-Interface-config.xml
