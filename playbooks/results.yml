@@ -33,9 +33,11 @@
         source: running
         display: xml
         filter: |
-           <ospf xmlns="urn:ietf:params:xml:ns:yang:ietf-ospf">
-               <neighbors/>
-           </ospf>
+          <ospf-oper-data xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-ospf-oper">
+            <ospf-state>
+              <op-mode/>
+            </ospf-state>
+          </ospf-oper-data>
       register: ospf_neighbors
 
     - name: Print OSPF Neighbor Data
