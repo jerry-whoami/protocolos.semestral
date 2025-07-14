@@ -76,6 +76,13 @@
     - name: Guardar configuración en memoria
       ansible.netcommon.netconf_rpc:
         rpc: |
-          <rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="102">
-            <cisco-ia:save-config xmlns:cisco-ia="http://cisco.com/ns/yang/cisco-ia"/>
+          <rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="101">
+            <copy-config>
+              <source>
+                <running/>
+              </source>
+              <target>
+                <startup/>
+              </target>
+            </copy-config>
           </rpc>
