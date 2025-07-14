@@ -11,6 +11,7 @@
   tasks:
     - name: Configure interfaces (IP address)
       ansible.netcommon.netconf_config:
+        commit: true
         default_operation: merge
         content: |
           <config xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
@@ -46,10 +47,14 @@
 
     - name: Apply basic OSPFv2 configuration
       ansible.netcommon.netconf_config:
+        # target: running
+        commit: true
         content: |
           <config xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
             <native xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-native">
               <router>
+                <router-ospf xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-ospf">
+                  <ospf>
                     <process-id>
                       <id>1</id>
                       <network>
@@ -77,7 +82,7 @@
   tags:
     - save
   tasks:
-    - name: Disable file-copy prompting to avoid hanging
+    - name: Disable file-copy prompting to avoid hangups
       cisco.ios.ios_config:
         commands:
           - file prompt quiet
@@ -85,7 +90,7 @@
       cisco.ios.ios_command:
         commands:
           - copy running-config startup-config
-    - name: Enable file-copy once again
+    - name: Re-enable file-copy prompts
       cisco.ios.ios_config:
         commands:
           - file prompt alert
