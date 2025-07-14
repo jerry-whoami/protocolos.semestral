@@ -72,3 +72,8 @@
               </router>
             </native>
           </config>
+
+    - name: Guardar configuración en memoria (copy running-config startup-config)
+      ansible.netcommon.netconf_rpc:
+        content: |
+          <cisco-ia:save-config xmlns:cisco-ia="http://cisco.com/ns/yang/cisco-ia"/>
