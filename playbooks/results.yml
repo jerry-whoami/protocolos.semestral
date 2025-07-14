@@ -32,12 +32,7 @@
       ansible.netcommon.netconf_get:
         source: running
         display: xml
-        filter: |
-          <ospf-oper-data xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-ospf-oper">
-            <ospf-state>
-              <op-mode/>
-            </ospf-state>
-          </ospf-oper-data>
+        filter: "<ospf-oper-data xmlns='http://cisco.com/ns/yang/Cisco-IOS-XE-ospf-oper'/>"
       register: ospf_neighbors
 
     - name: Print OSPF Neighbor Data
