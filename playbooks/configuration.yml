@@ -73,6 +73,11 @@
             </native>
           </config>
 
-    - name: Guardar configuración en memoria (copy running-config startup-config)
+    - name: Guardar configuración en memoria
       ansible.netcommon.netconf_rpc:
-        rpc: <cisco-ia:save-config xmlns:cisco-ia="http://cisco.com/ns/yang/cisco-ia"/>
+        rpc: copy-config
+        content:
+          source:
+            running:
+          target:
+            startup:
