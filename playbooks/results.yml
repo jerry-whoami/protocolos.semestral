@@ -37,3 +37,7 @@
     - name: Print OSPF Neighbor Data
       debug:
         msg: "{{ ospf_neighbors.stdout }}"
+    - name: Print OSPF Neighbor Data
+      copy:
+        content: "{{ ospf_neighbors.stdout }}" 
+        dest: ../configs/{{ inventory_hostname }}-Interface-config.xml
