@@ -75,4 +75,5 @@
 
     - name: Guardar configuración en memoria
       ansible.netcommon.netconf_rpc:
-        rpc: <save-config xmlns="http://cisco.com/yang/cisco-ia"/>
+        rpc: >
+          <cisco-ia:save-config xmlns:cisco-ia="http://cisco.com/ns/yang/cisco-ia"/>
