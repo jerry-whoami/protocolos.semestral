@@ -17,7 +17,7 @@
               <interface>
                 <GigabitEthernet>
                   <name>2</name>
-                  <shutdown operation="delete"/>
+                  <shutdown operation="remove"/>
                   <ip>
                     <address>
                       <primary>
@@ -29,7 +29,7 @@
                 </GigabitEthernet>
                 <GigabitEthernet>
                   <name>3</name>
-                  <shutdown operation="delete"/>
+                  <shutdown operation="remove"/>
                   <ip>
                     <address>
                       <primary>
