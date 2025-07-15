@@ -7,8 +7,15 @@
     ansible_port: 830
 
   tasks:
-    - name: Get Interface Config
+    - name: Get OSPF Neighbor Info
       ansible.netcommon.netconf_get:
+        source: running
+        display: xml
+      register: ospf_neighbors
+
+    - name: Mostrar vecinos OSPF
+      debug:
+        var: ospf_neighbors.stdout_lines
 
 - name: Mostrar configuración y vecinos OSPFv2 vía comandos CLI en IOS XE
   hosts: router
