@@ -12,6 +12,7 @@
     - name: Configure interfaces (IP address)
       ansible.netcommon.netconf_config:
         commit: true
+        save: true
         default_operation: merge
         content: |
           <config xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
