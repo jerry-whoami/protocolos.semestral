@@ -1,4 +1,17 @@
 ---
+- name: Mostrar configuración OSPFv2 via NETCONF en IOS XE
+  hosts: router
+  gather_facts: false
+  connection: ansible.netcommon.netconf
+  vars:
+    ansible_port: 830
+
+  tasks:
+    - name: Get Interface Config
+      ansible.netcommon.netconf_get:
+        source: running
+        display: pretty
+
 - name: Mostrar configuración y vecinos OSPFv2 vía comandos CLI en IOS XE
   hosts: router
   gather_facts: false
