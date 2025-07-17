@@ -26,6 +26,12 @@
       debug:
         var: ospf_neighbors.stdout_lines
 
+- name: Validar conectividad ICMP
+  hosts: router
+  gather_facts: false
+  connection: ansible.netcommon.network_cli
+
+  tasks:
     - name: Get full running config
       ansible.netcommon.netconf_get:
         source: running
