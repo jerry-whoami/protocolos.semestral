@@ -34,23 +34,14 @@
     ansible_port: 830
 
   tasks:
-    - name: Get full running config
-      ansible.netcommon.netconf_get:
-        display: xml
-        source: running
-
-    - name: Display raw config
-      debug:
-        var: running_config.output
-
     - name: Get OSPF-related state from running config
       ansible.netcommon.netconf_get:
         display: xml
         source: running
-        filter: |
-          <ospf-oper-data xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-ospf-oper">
-            <ospf-state/>
-          </ospf-oper-data>
+        # filter: |
+        #   <ospf-oper-data xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-ospf-oper">
+        #     <ospf-state/>
+        #   </ospf-oper-data>
       register: ospf_config
 
     - name: Display OSPF running config
