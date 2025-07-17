@@ -35,7 +35,6 @@
     ansible_port: 830
 
   tasks:
-  tasks:
     - name: Get full running config
       ansible.netcommon.netconf_get:
         source: running
