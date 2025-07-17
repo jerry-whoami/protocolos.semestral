@@ -26,7 +26,6 @@
       debug:
         var: ospf_neighbors.stdout_lines
 
----
 - name: Configure OSPFv2 via NETCONF in IOS XE
   hosts: router
   gather_facts: false
