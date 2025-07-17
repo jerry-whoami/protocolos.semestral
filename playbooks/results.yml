@@ -37,28 +37,26 @@
     - name: Get full running config
       ansible.netcommon.netconf_get:
         source: running
-      register: result
+      register: running_config
 
     - name: Display raw config
       debug:
-        var: result.rpc_reply
+        var: running_config.rpc_reply
 
-
-    - name: Get full running config
+    - name: Get OSPF-related state from running config
       ansible.netcommon.netconf_get:
         source: running
-        filter:
+        filter: |
           <ospf-oper-data xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-ospf-oper">
             <ospf-state/>
           </ospf-oper-data>
-      register: result
+      register: ospf_config
 
-    - name: Display raw config
+    - name: Display OSPF running config
       debug:
-        var: result.rpc_reply
+        var: ospf_config.rpc_reply
 
-
-    - name: Get OSPF neighbor state
+    - name: Get OSPF neighbor state (direct RPC)
       ansible.netcommon.netconf_rpc:
         rpc: |
           <get>
@@ -68,12 +66,11 @@
               </ospf-oper-data>
             </filter>
           </get>
-      register: ospf_output
+      register: ospf_neighbors
 
-    - name: Show OSPF neighbors
+    - name: Display OSPF neighbor output
       debug:
-        var: ospf_output.rpc_reply
-
+        var: ospf_neighbors.rpc_reply
     # Optional: Guardar resultado en archivo local
     # - name: Guardar vecinos OSPF en archivo
     #   copy:
