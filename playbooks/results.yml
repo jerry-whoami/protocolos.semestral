@@ -65,9 +65,9 @@
         filter: |
           <native xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-native">
             <router>
-              <ospf xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-ospf">
-                <neighbor/>
-              </ospf>
+              <router-ospf xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-ospf">
+                <ospf/>
+              </router-ospf>
             </router>
           </native>
       register: ospf_config
@@ -99,3 +99,11 @@
           # <ospf-oper-data xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-ospf-oper">
           #   <ospf-state/>
           # </ospf-oper-data>
+        #
+          # <native xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-native">
+          #   <router>
+          #     <ospf xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-ospf">
+          #       <neighbor/>
+          #     </ospf>
+          #   </router>
+          # </native>
