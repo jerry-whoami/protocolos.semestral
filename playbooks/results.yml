@@ -58,6 +58,24 @@
       debug:
         msg: "{{ interface_config.stdout }}"
 
+    - name: Get OSPF configuration
+      ansible.netcommon.netconf_get:
+        display: xml
+        source: running
+        filter: |
+          <native xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-native">
+            <router>
+              <ospf xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-ospf">
+                <neighbor/>
+              </ospf>
+            </router>
+          </native>
+      register: ospf_config
+
+    - name: Display OSPF running config
+      debug:
+        var: ospf_config.output
+
     - name: Get OSPF-related state from running config
       ansible.netcommon.netconf_get:
         display: xml
@@ -78,3 +96,6 @@
     #     content: "{{ ospf_neighbors.stdout | join('\n') }}"
     #     dest: "./configs/{{ inventory_hostname }}-ospf-neighbors.txt"
 
+          # <ospf-oper-data xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-ospf-oper">
+          #   <ospf-state/>
+          # </ospf-oper-data>
