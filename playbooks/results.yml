@@ -1,22 +1,4 @@
 ---
-- name: Mostrar configuración OSPFv2 via NETCONF en IOS XE
-  hosts: router
-  gather_facts: false
-  connection: ansible.netcommon.netconf
-  vars:
-    ansible_port: 830
-
-  tasks:
-    - name: Get OSPF Neighbor Info
-      ansible.netcommon.netconf_get:
-        source: running
-        display: xml
-      register: ospf_neighbors
-
-    - name: Mostrar vecinos OSPF
-      debug:
-        var: ospf_neighbors.stdout_lines
-
 - name: Mostrar configuración y vecinos OSPFv2 vía comandos CLI en IOS XE
   hosts: router
   gather_facts: false
@@ -43,6 +25,46 @@
     - name: Mostrar vecinos OSPF
       debug:
         var: ospf_neighbors.stdout_lines
+
+    - name: Get full running config
+      ansible.netcommon.netconf_get:
+        source: running
+      register: result
+
+    - name: Display raw config
+      debug:
+        var: result.rpc_reply
+
+
+    - name: Get full running config
+      ansible.netcommon.netconf_get:
+        source: running
+        filter:
+          <ospf-oper-data xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-ospf-oper">
+            <ospf-state/>
+          </ospf-oper-data>
+      register: result
+
+    - name: Display raw config
+      debug:
+        var: result.rpc_reply
+
+
+    - name: Get OSPF neighbor state
+      ansible.netcommon.netconf_rpc:
+        rpc: |
+          <get>
+            <filter xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" type="subtree">
+              <ospf-oper-data xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-ospf-oper">
+                <ospf-state/>
+              </ospf-oper-data>
+            </filter>
+          </get>
+      register: ospf_output
+
+    - name: Show OSPF neighbors
+      debug:
+        var: ospf_output.rpc_reply
 
     # Optional: Guardar resultado en archivo local
     # - name: Guardar vecinos OSPF en archivo
