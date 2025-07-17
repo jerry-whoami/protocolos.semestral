@@ -26,11 +26,15 @@
       debug:
         var: ospf_neighbors.stdout_lines
 
-- name: Validar conectividad ICMP
+---
+- name: Configure OSPFv2 via NETCONF in IOS XE
   hosts: router
   gather_facts: false
-  connection: ansible.netcommon.network_cli
+  connection: ansible.netcommon.netconf
+  vars:
+    ansible_port: 830
 
+  tasks:
   tasks:
     - name: Get full running config
       ansible.netcommon.netconf_get:
