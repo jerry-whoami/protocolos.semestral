@@ -26,7 +26,7 @@
       debug:
         var: ospf_neighbors.stdout_lines
 
-- name: Configure OSPFv2 via NETCONF in IOS XE
+- name: Mostrar configuración y vecinos OSPFv2 vía el protocolo Netconf
   hosts: router
   gather_facts: false
   connection: ansible.netcommon.netconf
@@ -58,52 +58,34 @@
       debug:
         msg: "{{ interface_config.stdout }}"
 
-    - name: Get OSPF configuration
-      ansible.netcommon.netconf_get:
-        display: xml
-        source: running
-        filter: |
-          <native xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-native">
-            <router>
-              <router-ospf xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-ospf">
-                <ospf/>
-              </router-ospf>
-            </router>
-          </native>
-      register: ospf_config
-
-    - name: Display OSPF running config
-      debug:
-        var: ospf_config.output
-
-    - name: Get OSPF-related state from running config
-      ansible.netcommon.netconf_get:
-        display: xml
-        source: running
-        filter: |
-          <ospf-oper-data xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-ospf-oper">
-            <ospf-state/>
-          </ospf-oper-data>
-      register: ospf_config
-
-    - name: Display OSPF running config
-      debug:
-        var: ospf_config.output
-
-    # Optional: Guardar resultado en archivo local
-    # - name: Guardar vecinos OSPF en archivo
-    #   copy:
-    #     content: "{{ ospf_neighbors.stdout | join('\n') }}"
-    #     dest: "./configs/{{ inventory_hostname }}-ospf-neighbors.txt"
-
-          # <ospf-oper-data xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-ospf-oper">
-          #   <ospf-state/>
-          # </ospf-oper-data>
-        #
-          # <native xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-native">
-          #   <router>
-          #     <ospf xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-ospf">
-          #       <neighbor/>
-          #     </ospf>
-          #   </router>
-          # </native>
+    # - name: Get OSPF configuration
+    #   ansible.netcommon.netconf_get:
+    #     display: xml
+    #     source: running
+    #     filter: |
+    #       <native xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-native">
+    #         <router>
+    #           <router-ospf xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-ospf">
+    #             <ospf/>
+    #           </router-ospf>
+    #         </router>
+    #       </native>
+    #   register: ospf_config
+    #
+    # - name: Display OSPF running config
+    #   debug:
+    #     var: ospf_config.output
+    #
+    # - name: Get OSPF-related state from running config
+    #   ansible.netcommon.netconf_get:
+    #     display: xml
+    #     source: running
+    #     filter: |
+    #       <ospf-oper-data xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-ospf-oper">
+    #         <ospf-state/>
+    #       </ospf-oper-data>
+    #   register: ospf_config
+    #
+    # - name: Display OSPF running config
+    #   debug:
+    #     var: ospf_config.output

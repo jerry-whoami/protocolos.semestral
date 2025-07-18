@@ -1,3 +1,4 @@
+---
 - name: Validar conectividad ICMP
   hosts: router
   gather_facts: false
