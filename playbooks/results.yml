@@ -26,6 +26,17 @@
       debug:
         var: ospf_neighbors.stdout_lines
 
+    - name: Probar conectividad a vecinos OSPF
+      cisco.ios.ios_command:
+        commands:
+          - ping 192.168.100.2
+          - ping 192.168.120.2
+      register: ping_results
+
+    - name: Mostrar resultado de los pings a vecinos
+      debug:
+        var: ping_results.stdout_lines
+
 - name: Mostrar configuración y vecinos OSPFv2 vía el protocolo Netconf
   hosts: router
   gather_facts: false
@@ -58,24 +69,24 @@
       debug:
         msg: "{{ interface_config.stdout }}"
 
-    # - name: Get OSPF configuration
-    #   ansible.netcommon.netconf_get:
-    #     display: xml
-    #     source: running
-    #     filter: |
-    #       <native xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-native">
-    #         <router>
-    #           <router-ospf xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-ospf">
-    #             <ospf/>
-    #           </router-ospf>
-    #         </router>
-    #       </native>
-    #   register: ospf_config
-    #
-    # - name: Display OSPF running config
-    #   debug:
-    #     var: ospf_config.output
-    #
+    - name: Get OSPF configuration
+      ansible.netcommon.netconf_get:
+        display: xml
+        source: running
+        filter: |
+          <native xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-native">
+            <router>
+              <router-ospf xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-ospf">
+                <ospf/>
+              </router-ospf>
+            </router>
+          </native>
+      register: ospf_config
+
+    - name: Display OSPF running config
+      debug:
+        var: ospf_config.output
+
     # - name: Get OSPF-related state from running config
     #   ansible.netcommon.netconf_get:
     #     display: xml
