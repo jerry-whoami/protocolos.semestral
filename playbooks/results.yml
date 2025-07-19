@@ -93,9 +93,6 @@
         source: running
         filter: |
           <ospf-oper-data xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-ospf-oper">
-            <ospfv2-instance>
-              <instance-id>1</instance-id>
-            </ospfv2-instance>
           </ospf-oper-data>
       register: ospf_config
 
