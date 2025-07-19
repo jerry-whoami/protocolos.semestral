@@ -98,7 +98,10 @@
                 <ospfv2-interface>
                   <ospfv2-neighbor/>
                   <ospfv2-neighbor>
-                    <nbr-id/>
+                    <nbr-id>33686018</nbr-id>
+                  </ospfv2-neighbor>
+                  <ospfv2-neighbor>
+                    <nbr-id>50529027</nbr-id>
                   </ospfv2-neighbor>
                 </ospfv2-interface>
               </ospfv2-area>
