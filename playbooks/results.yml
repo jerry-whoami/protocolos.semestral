@@ -90,7 +90,6 @@
     - name: Get OSPF-related state from running config
       ansible.netcommon.netconf_get:
         display: xml
-        source: running
         filter: |
           <ospf-oper-data xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-ospf-oper">
             <ospf-state>
