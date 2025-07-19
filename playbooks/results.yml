@@ -99,7 +99,7 @@
                   <ospfv2-neighbor/>
                 </ospfv2-interface>
               </ospfv2-area>
-            <ospfv2-instance>
+            </ospfv2-instance>
           </ospf-oper-data>
       register: ospf_config
 
