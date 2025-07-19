@@ -92,9 +92,23 @@
         display: xml
         filter: |
           <ospf-oper-data xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-ospf-oper">
-            <ospfv2-instance/>
             <ospfv2-instance>
-              <instance-id>1</instance-id>
+              <instance-id/>
+              <vrf-name/>
+              <ospfv2-area>
+                <area-id/>
+                <ospfv2-interface>
+                  <name/>
+                  <ospfv2-neighbor>
+                    <nbr-id/>
+                    <address/>
+                    <state/>
+                    <dr-ip/>
+                    <bdr-ip/>
+                    <dead-timer/>
+                  </ospfv2-neighbor>
+                </ospfv2-interface>
+              </ospfv2-area>
             </ospfv2-instance>
           </ospf-oper-data>
       register: ospf_config
