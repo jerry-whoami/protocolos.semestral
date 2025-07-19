@@ -93,20 +93,16 @@
         source: running
         filter: |
           <ospf-oper-data xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-ospf-oper">
-            <ospf-state>
-              <ospf-instance>
-                <ospf-area>
-                  <ospf-interface>
-                    <ospf-neighbor>
-                      <neighbor-id>2.2.2.2</neighbor-id>
-                    </ospf-neighbor>
-                    <ospf-neighbor>
-                      <neighbor-id>3.3.3.3</neighbor-id>
-                    </ospf-neighbor>
-                  </ospf-interface>
-                </ospf-area>
-              </ospf-instance>
-            </ospf-state>
+            <ospf-state><ospf-instance><ospf-area><ospf-interface>
+              <name/><adjacency-information><neighbors>
+                <neighbor>
+                  <neighbor-id/>
+                  <neighbor-address/>
+                  <neighbor-state/>
+                  <is-adjacency-full/>
+                </neighbor>
+              </neighbors></adjacency-information>
+            </ospf-interface></ospf-area></ospf-instance></ospf-state>
           </ospf-oper-data>
       register: ospf_config
 
